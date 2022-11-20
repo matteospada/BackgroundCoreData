@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var numbers = ContentViewViewModel()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            List {
+                ForEach(numbers.values, id: \.self){ number in
+                    Text("\(number)")
+                }
+            }
         }
         .padding()
     }
