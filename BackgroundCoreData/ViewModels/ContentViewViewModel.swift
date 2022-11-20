@@ -14,6 +14,7 @@ class ContentViewViewModel: NSObject, ObservableObject {
     private let fectchedResultController: NSFetchedResultsController<Number>
     
     override init() {
+        // Configuro il view model come delegate di NSFetchedResultsController
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Number> = Number.fetchRequest()
         fetchRequest.sortDescriptors = []
@@ -40,6 +41,7 @@ class ContentViewViewModel: NSObject, ObservableObject {
 
 extension ContentViewViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        // Ricevo gli aggironamenti del context e di conseguenza aggiorno il view Model.
         print("Inside controllerDidChangeContent")
         guard let objects = controller.fetchedObjects as? [Number] else { return }
         self.values = objects.map { Int($0.value) }
