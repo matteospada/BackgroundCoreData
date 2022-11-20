@@ -15,9 +15,9 @@ class UpdateManager {
     
     func manageKeywordUpdate() {
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
+            //Controlla se tutte le keyword sono aggiornate se false aggiornale
             Task {
-                let number = await StoreService.shared.getNumber()
-                CoreDataManager.shared.saveNumber(number: number)
+                await StoreService.shared.newNumber()
             }
         }
     }

@@ -13,10 +13,11 @@ class StoreService {
     
     init() {}
     
-    func getNumber() async -> Int {
+    func newNumber() async {
         let number = Int.random(in: 5...100)
         sleep(1)
-        return number
+        // Qui aggironerei le keyword 
+        CoreDataManager.shared.saveNumber(number: number)
     }
     
 }

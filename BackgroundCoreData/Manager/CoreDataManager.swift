@@ -18,6 +18,7 @@ class CoreDataManager {
             if let error = error { fatalError("Unable to initialize Core Data \(error)") }
         }
         
+        // Le modifiche vengono automaticamente sycronizzate con il context principale.
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         persistentContainer.viewContext.undoManager = nil
         
@@ -25,6 +26,7 @@ class CoreDataManager {
 }
 
 extension CoreDataManager {
+    // Salvo la keyword nel context di background
     func saveNumber(number: Int) {
         let context = self.newTaskContext()
         context.performAndWait {
